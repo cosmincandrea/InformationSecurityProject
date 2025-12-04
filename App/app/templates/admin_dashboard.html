@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard</h2>
+
+<h3>Number of appointments per month</h3>
+<table>
+  <thead>
+    <tr><th>Month (YYYY-MM)</th><th>Count</th></tr>
+  </thead>
+  <tbody>
+  {% for month, count in report.items() %}
+    <tr>
+      <td>{{ month }}</td>
+      <td>{{ count }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<p>
+  <a href="{{ url_for('admin.admin_backup') }}">Create backup now</a>
+</p>
+<p>Backup writes encrypted user data and appointment data into <code>backups/</code>
+and logs the path in the console.</p>
+{% endblock %}

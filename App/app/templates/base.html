@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ title or "Healthcare Dashboard Demo" }}</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    nav a { margin-right: 10px; }
+    .flash { padding: 5px 10px; margin: 5px 0; border-radius: 4px; }
+    .flash-danger { background: #ffdddd; }
+    .flash-warning { background: #fff4cc; }
+    .flash-success { background: #ddffdd; }
+    .flash-info { background: #ddeeff; }
+    table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+    th, td { border: 1px solid #ccc; padding: 5px; text-align: left; }
+  </style>
+</head>
+<body>
+<nav>
+  {% if session.username %}
+    Logged in as <strong>{{ session.username }}</strong> ({{ session.role }}) |
+    <a href="{{ url_for('main.index') }}">Home</a> |
+    <a href="{{ url_for('auth.logout') }}">Logout</a>
+  {% else %}
+    <a href="{{ url_for('auth.login') }}">Login</a>
+  {% endif %}
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="flash flash-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+<hr>
+
+{% block content %}{% endblock %}
+</body>
+</html>

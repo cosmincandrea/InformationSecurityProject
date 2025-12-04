@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Login</h2>
+<form method="post">
+  <label>Username:
+    <input type="text" name="username">
+  </label><br><br>
+  <label>Password:
+    <input type="password" name="password">
+  </label><br><br>
+  <button type="submit">Login</button>
+</form>
+
+<p>Demo users (for testing):</p>
+<ul>
+  <li>Patient: <code>alice_patient / patient123</code></li>
+  <li>Medic: <code>dr_bob / medic123</code></li>
+  <li>Admin: <code>carol_admin / admin123</code></li>
+</ul>
+{% endblock %}
