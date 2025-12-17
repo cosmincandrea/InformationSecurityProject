@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ title or "Healthcare Dashboard Demo" }}</title>
+    <style>
+      /* --- Global Resets & Typography --- */
+      :root {
+        --primary-blue: #0ea5e9;
+        --primary-dark: #0284c7;
+        --slate-50: #f8fafc;
+        --slate-100: #f1f5f9;
+        --slate-300: #cbd5e1;
+        --slate-600: #475569;
+        --slate-800: #1e293b;
+        --danger: #ef4444;
+        --success: #10b981;
+        --warning: #f59e0b;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: var(--slate-50);
+        color: var(--slate-600);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* --- Modern Navigation Bar --- */
+      .main-nav {
+        background-color: white;
+        border-bottom: 1px solid var(--slate-300);
+        padding: 0 2rem;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .nav-brand {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--slate-800);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .nav-brand svg {
+        color: var(--primary-blue);
+      }
+
+      .nav-user-controls {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        font-size: 0.95rem;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--slate-600);
+      }
+
+      .user-role {
+        background-color: var(--slate-100);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: var(--slate-800);
+      }
+
+      .btn-logout {
+        text-decoration: none;
+        color: var(--danger);
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 6px;
+        transition: background 0.2s;
+      }
+
+      .btn-logout:hover {
+        background-color: #fef2f2;
+      }
+
+      .btn-home {
+        text-decoration: none;
+        color: var(--slate-600);
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .btn-home:hover {
+        color: var(--primary-blue);
+      }
+
+      /* --- Alert / Flash Messages --- */
+      .flash-container {
+        max-width: 1000px;
+        margin: 1.5rem auto 0 auto;
+        padding: 0 2rem;
+      }
+
+      .flash {
+        padding: 1rem 1.25rem;
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        border-left: 4px solid transparent;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        background: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .flash-danger {
+        border-left-color: var(--danger);
+        background-color: #fef2f2;
+        color: #991b1b;
+      }
+
+      .flash-warning {
+        border-left-color: var(--warning);
+        background-color: #fffbeb;
+        color: #92400e;
+      }
+
+      .flash-success {
+        border-left-color: var(--success);
+        background-color: #f0fdf4;
+        color: #166534;
+      }
+
+      .flash-info {
+        border-left-color: var(--primary-blue);
+        background-color: #f0f9ff;
+        color: #075985;
+      }
+
+      /* --- Fallback Table Styles --- 
+           (In case a child template doesn't use the 'modern-table' class) 
+        */
+      table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 10px;
+      }
+      th,
+      td {
+        border: 1px solid var(--slate-300);
+        padding: 8px;
+        text-align: left;
+      }
+
+      /* --- Main Content Area --- */
+      .content-wrapper {
+        flex: 1;
+        /* Padding is handled by child templates usually, 
+               but this ensures content doesn't hit edges on plain pages */
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="main-nav">
+      <a href="{{ url_for('main.index') }}" class="nav-brand">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 6v12" />
+          <path d="M6 12h12" />
+        </svg>
+        MedSecure
+      </a>
+
+      <div class="nav-user-controls">
+        {% if session.username %}
+        <a href="{{ url_for('main.index') }}" class="btn-home">Home</a>
+        <span class="user-info">
+          <span>Logged in as <strong>{{ session.username }}</strong></span>
+          <span class="user-role">{{ session.role }}</span>
+        </span>
+        <span style="color: var(--slate-300)">|</span>
+        <a href="{{ url_for('auth.logout') }}" class="btn-logout">Logout</a>
+        {% else %}
+        <a href="{{ url_for('main.index') }}" class="btn-home">Home</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    <div class="flash-container">
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="flash flash-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+    </div>
+
+    <div class="content-wrapper">{% block content %}{% endblock %}</div>
+  </body>
+</html>

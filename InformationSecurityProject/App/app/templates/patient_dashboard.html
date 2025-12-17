@@ -1,0 +1,335 @@
+{% extends "base.html" %} {% block content %}
+<div class="dashboard-wrapper">
+  <header class="dashboard-header">
+    <div class="header-icon patient-icon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+        <circle cx="12" cy="7" r="4" />
+      </svg>
+    </div>
+    <h2>Patient Dashboard</h2>
+  </header>
+
+  <div class="dashboard-card profile-section">
+    <div class="card-header flex-header">
+      <h3>Personal data</h3>
+    </div>
+
+    <div class="profile-grid">
+      <div class="profile-item">
+        <div class="icon-box">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </div>
+        <div class="data-content">
+          <span class="label">Full name</span>
+          <span class="value">{{ personal.full_name }}</span>
+        </div>
+      </div>
+
+      <div class="profile-item">
+        <div class="icon-box">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+        </div>
+        <div class="data-content">
+          <span class="label">Email</span>
+          <span class="value">{{ personal.email }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-card">
+    <div class="card-header">
+      <h3>Past & upcoming appointments</h3>
+    </div>
+    <div class="table-responsive">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th width="10%">ID</th>
+            <th width="30%">Date</th>
+            <th width="30%">Status</th>
+            <th width="30%">Medic ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for a in appointments %}
+          <tr>
+            <td><span class="id-badge">#{{ a.id }}</span></td>
+            <td class="text-slate-700 font-medium">{{ a.date }}</td>
+            <td>
+              <span class="status-pill {{ a.status|lower }}">
+                {{ a.status }}
+              </span>
+            </td>
+            <td>
+              <div class="medic-ref">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.2.2 0 1 0 .3.3"
+                  />
+                  <path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4" />
+                </svg>
+                Dr. ID: {{ a.medic_name }}
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* --- Shared Dashboard CSS (Matches Medic View) --- */
+  .dashboard-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    min-height: 100vh;
+  }
+
+  .dashboard-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+  }
+
+  .header-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Specific Patient Theme Color: Green/Teal mix or Standard Blue */
+  .patient-icon {
+    background-color: #10b981; /* Emerald Green to distinguish from Medic Blue */
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
+  }
+
+  .dashboard-header h2 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 1.8rem;
+  }
+
+  /* Cards */
+  .dashboard-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 2rem;
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    background-color: #fff;
+  }
+
+  .card-header h3 {
+    margin: 0;
+    color: #334155;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  /* --- Profile Section Specifics --- */
+  .flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .security-badge {
+    font-size: 0.75rem;
+    background-color: #f0fdf4;
+    color: #15803d;
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #bbf7d0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .profile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .profile-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .icon-box {
+    width: 42px;
+    height: 42px;
+    background-color: #f1f5f9;
+    color: #64748b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .data-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .data-content .label {
+    font-size: 0.8rem;
+    color: #64748b;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .data-content .value {
+    font-size: 1.1rem;
+    color: #0f172a;
+    font-weight: 500;
+  }
+
+  /* --- Table Styles --- */
+  .table-responsive {
+    overflow-x: auto;
+  }
+  .modern-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  .modern-table thead {
+    background-color: #f8fafc;
+  }
+  .modern-table th {
+    padding: 1rem 1.5rem;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #64748b;
+    font-weight: 600;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .modern-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
+    font-size: 0.95rem;
+    vertical-align: middle;
+  }
+  .modern-table tbody tr:hover {
+    background-color: #fcfcfc;
+  }
+
+  .id-badge {
+    font-family: monospace;
+    background: #f1f5f9;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #64748b;
+  }
+  .medic-ref {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: #0ea5e9;
+  }
+  .font-medium {
+    font-weight: 500;
+  }
+  .text-slate-700 {
+    color: #334155;
+  }
+
+  /* Status Pills */
+  .status-pill {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    background-color: #f1f5f9;
+    color: #475569;
+  }
+  .status-pill.confirmed,
+  .status-pill.completed {
+    background-color: #dcfce7;
+    color: #166534;
+  }
+  .status-pill.pending,
+  .status-pill.scheduled {
+    background-color: #e0f2fe;
+    color: #0369a1;
+  }
+  .status-pill.cancelled {
+    background-color: #fee2e2;
+    color: #991b1b;
+  }
+</style>
+{% endblock %}

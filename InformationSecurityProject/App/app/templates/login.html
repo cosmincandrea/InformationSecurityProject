@@ -1,0 +1,244 @@
+{% extends "base.html" %} {% block content %}
+<div class="medical-login-wrapper">
+  <div class="medical-login-card">
+    <div class="login-header">
+      <div class="icon-bg">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 6v12" />
+          <path d="M6 12h12" />
+        </svg>
+      </div>
+      <h2>Login</h2>
+      <p class="subtitle">Secure Medical Dashboard Access</p>
+    </div>
+
+    <form method="post" class="login-form">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          placeholder="Enter your ID"
+          required
+        />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="••••••••"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn-primary">Login</button>
+    </form>
+
+    <div class="demo-users-box">
+      <p class="demo-title">Demo users (for testing):</p>
+      <ul class="demo-list">
+        <li>
+          <span class="role-badge patient">Patient</span>
+          <code>alice_patient / patient123</code>
+        </li>
+        <li>
+          <span class="role-badge medic">Medic</span>
+          <code>dr_bob / medic123</code>
+        </li>
+        <li>
+          <span class="role-badge admin">Admin</span>
+          <code>carol_admin / admin123</code>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Medical Dashboard Theme CSS 
+       Palette: Slate, White, and Medical Blue (#0ea5e9)
+    */
+
+  /* Wrapper to center the card */
+  .medical-login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; /* Adjust based on your base.html */
+    background-color: #f1f5f9; /* Slate-100 */
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  /* The Main Card */
+  .medical-login-card {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05),
+      0 8px 10px -6px rgba(0, 0, 0, 0.01);
+    border: 1px solid #e2e8f0;
+  }
+
+  /* Header Styling */
+  .login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .icon-bg {
+    background-color: #e0f2fe; /* Light Blue */
+    color: #0284c7; /* Dark Blue */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+  }
+
+  .login-header h2 {
+    margin: 0;
+    color: #0f172a; /* Slate-900 */
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    color: #64748b; /* Slate-500 */
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+
+  /* Form Inputs */
+  .input-group {
+    margin-bottom: 1.25rem;
+    text-align: left;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #334155; /* Slate-700 */
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    box-sizing: border-box; /* Ensures padding doesn't break width */
+  }
+
+  .input-group input:focus {
+    outline: none;
+    border-color: #0ea5e9; /* Medical Blue */
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+  }
+
+  /* Button */
+  .btn-primary {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: #0ea5e9;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background-color: #0284c7;
+  }
+
+  /* Demo Users Box */
+  .demo-users-box {
+    margin-top: 2rem;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .demo-title {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .demo-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .demo-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .demo-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .demo-list code {
+    background-color: #e2e8f0;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: #334155;
+  }
+
+  /* Badges for roles */
+  .role-badge {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 99px;
+    font-weight: 600;
+    min-width: 60px;
+    text-align: center;
+  }
+  .role-badge.patient {
+    background: #dcfce7;
+    color: #166534;
+  } /* Green */
+  .role-badge.medic {
+    background: #e0f2fe;
+    color: #075985;
+  } /* Blue */
+  .role-badge.admin {
+    background: #fee2e2;
+    color: #991b1b;
+  } /* Red */
+</style>
+{% endblock %}

@@ -1,0 +1,5 @@
+{
+  "SECRET_KEY": "dev-secret-change-me",
+  "ENCRYPTION_KEY": "EsVeszy_j0wszOQiqAolrsusibZr4DmeC7hoKv5_beE=",
+  "BACKUP_DIR": "backups"
+}

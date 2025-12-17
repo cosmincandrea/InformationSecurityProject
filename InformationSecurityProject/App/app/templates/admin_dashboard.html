@@ -1,0 +1,305 @@
+{% extends "base.html" %} 
+
+{% block content %}
+<div class="dashboard-wrapper">
+  
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-container">
+        {% for category, message in messages %}
+          <div class="flash-message {{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <header class="dashboard-header">
+    <div class="header-icon admin-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    </div>
+    <h2>Admin Dashboard</h2>
+  </header>
+
+  <div class="dashboard-card backup-card">
+    <div class="backup-content">
+      <div class="backup-info">
+        <div class="icon-label">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <h3>System Backup</h3>
+        </div>
+        <p>
+          Backup writes encrypted user data and appointment data into
+          <code>backups/</code> and logs the path in the console.
+        </p>
+      </div>
+      <div class="backup-action">
+        <a href="{{ url_for('admin.admin_backup') }}" class="btn-backup">
+          Create backup now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-card highlight-card">
+    <div class="card-header">
+      <h3>➕ Create New User</h3>
+    </div>
+    <div class="card-body">
+      <form action="{{ url_for('admin.create_user') }}" method="POST" class="create-form">
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" name="username" required placeholder="jdoe">
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" name="password" required placeholder="********">
+        </div>
+        <div class="form-group grow">
+          <label>Full Name</label>
+          <input type="text" name="full_name" required placeholder="John Doe">
+        </div>
+        <div class="form-group grow">
+          <label>Email</label>
+          <input type="email" name="email" required placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label>Role</label>
+          <select name="role" required>
+            <option value="patient">Patient</option>
+            <option value="medic">Medic</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="form-group align-bottom">
+           <button type="submit" class="btn-primary">Create User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="dashboard-card">
+    <div class="card-header">
+      <h3>Manage Users</h3>
+    </div>
+    <div class="table-responsive">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th width="5%">ID</th>
+            <th width="15%">Username</th>
+            <th width="25%">Full Name</th>
+            <th width="25%">Email</th>
+            <th width="15%">Role</th>
+            <th width="15%">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in users %}
+          <tr>
+            <td><span class="id-badge">#{{ u.id }}</span></td>
+            
+            <td class="font-medium text-slate-700">{{ u.username }}</td>
+
+            <td>
+              <input type="text" name="full_name" class="table-input" value="{{ u.full_name }}" form="update-user-{{ u.id }}">
+            </td>
+            <td>
+              <input type="email" name="email" class="table-input" value="{{ u.email }}" form="update-user-{{ u.id }}">
+            </td>
+            <td>
+              <select name="role" class="table-select role-{{ u.role }}" form="update-user-{{ u.id }}">
+                <option value="patient" {% if u.role == 'patient' %}selected{% endif %}>Patient</option>
+                <option value="medic" {% if u.role == 'medic' %}selected{% endif %}>Medic</option>
+                <option value="admin" {% if u.role == 'admin' %}selected{% endif %}>Admin</option>
+              </select>
+            </td>
+
+            <td>
+              <div class="action-buttons">
+                <form id="update-user-{{ u.id }}" action="{{ url_for('admin.update_user', user_id=u.id) }}" method="POST">
+                   <button type="submit" class="btn-icon btn-update" title="Save Changes">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                   </button>
+                </form>
+
+                <form action="{{ url_for('admin.delete_user', user_id=u.id) }}" method="POST" onsubmit="return confirm('Are you sure? This will delete the user and ALL their appointments.');">
+                  <button type="submit" class="btn-icon btn-delete" title="Delete User">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="dashboard-card">
+    <div class="card-header">
+      <h3>Number of appointments per month</h3>
+    </div>
+    <div class="table-responsive">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th width="60%">Month (YYYY-MM)</th>
+            <th width="40%" class="text-right">Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for month, count in report.items() %}
+          <tr>
+            <td class="font-medium text-slate-700">
+              <span class="calendar-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </span>
+              {{ month }}
+            </td>
+            <td class="text-right">
+              <span class="count-badge">{{ count }}</span>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<style>
+  /* --- Global & Layout --- */
+  .dashboard-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafc;
+    min-height: 100vh;
+  }
+
+  /* --- Flash Messages --- */
+  .flash-container { margin-bottom: 1.5rem; }
+  .flash-message {
+    padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem; font-weight: 500;
+  }
+  .flash-message.success { background-color: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+  .flash-message.danger { background-color: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+  .flash-message.warning { background-color: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+
+  /* --- Header --- */
+  .dashboard-header { display: flex; align-items: center; margin-bottom: 2rem; gap: 1rem; }
+  .header-icon {
+    width: 48px; height: 48px; border-radius: 12px; display: flex;
+    align-items: center; justify-content: center;
+  }
+  .admin-icon {
+    background-color: #e11d48; color: white;
+    box-shadow: 0 4px 6px -1px rgba(225, 29, 72, 0.3);
+  }
+  .dashboard-header h2 { margin: 0; color: #0f172a; font-size: 1.8rem; }
+
+  /* --- Cards --- */
+  .dashboard-card {
+    background: white; border-radius: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0; margin-bottom: 2rem; overflow: hidden;
+  }
+  .card-header { padding: 1.5rem; border-bottom: 1px solid #f1f5f9; background: #fff; }
+  .card-header h3 { margin: 0; color: #334155; font-size: 1.25rem; font-weight: 600; }
+  .card-body { padding: 1.5rem; }
+
+  /* --- Create User Form --- */
+  .create-form { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; min-width: 150px; }
+  .form-group.grow { flex-grow: 1; }
+  .form-group.align-bottom { justify-content: flex-end; }
+  
+  .form-group label { font-size: 0.85rem; font-weight: 600; color: #64748b; }
+  .create-form input, .create-form select {
+    padding: 0.6rem; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem; outline: none;
+  }
+  .create-form input:focus, .create-form select:focus { border-color: #e11d48; ring: 2px solid #e11d48; }
+
+  .btn-primary {
+    background-color: #0f172a; color: white; padding: 0.6rem 1.2rem; border-radius: 8px;
+    border: none; font-weight: 600; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-primary:hover { background-color: #334155; }
+
+  /* --- Tables & Inputs --- */
+  .table-responsive { overflow-x: auto; }
+  .modern-table { width: 100%; border-collapse: collapse; text-align: left; }
+  .modern-table th {
+    padding: 1rem 1.5rem; font-size: 0.75rem; text-transform: uppercase;
+    color: #64748b; font-weight: 600; border-bottom: 1px solid #e2e8f0; background: #f8fafc;
+  }
+  .modern-table td {
+    padding: 1rem 1.5rem; border-bottom: 1px solid #f1f5f9;
+    color: #475569; font-size: 0.95rem; vertical-align: middle;
+  }
+
+  /* Inline editing inputs */
+  .table-input {
+    width: 100%; padding: 6px; border: 1px solid transparent; border-radius: 4px;
+    background: transparent; color: inherit; font-size: inherit;
+  }
+  .table-input:hover, .table-input:focus {
+    background: white; border-color: #cbd5e1; box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+
+  /* Role Badge/Select */
+  .table-select {
+    padding: 4px 8px; border-radius: 6px; border: 1px solid #cbd5e1;
+    font-size: 0.85rem; font-weight: 600; cursor: pointer;
+  }
+  .role-admin { background: #fee2e2; color: #991b1b; border-color: #fca5a5; }
+  .role-medic { background: #e0f2fe; color: #0369a1; border-color: #bae6fd; }
+  .role-patient { background: #dcfce7; color: #166534; border-color: #86efac; }
+
+  /* --- Action Buttons --- */
+  .action-buttons { display: flex; gap: 0.5rem; align-items: center; }
+  .btn-icon {
+    border: none; background: none; cursor: pointer; padding: 6px;
+    border-radius: 6px; transition: background 0.2s; display: flex;
+  }
+  .btn-update { color: #0ea5e9; }
+  .btn-update:hover { background-color: #e0f2fe; }
+  .btn-delete { color: #ef4444; }
+  .btn-delete:hover { background-color: #fee2e2; }
+
+  /* --- Backup Section --- */
+  .backup-card { border-left: 4px solid #e11d48; }
+  .backup-content { padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem; }
+  .backup-info { flex: 1; min-width: 300px; }
+  .icon-label { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; color: #e11d48; }
+  .icon-label h3 { margin: 0; font-size: 1.1rem; font-weight: 700; }
+  .backup-info p { margin: 0; color: #64748b; font-size: 0.95rem; line-height: 1.5; }
+  .backup-info code { background-color: #f1f5f9; color: #e11d48; padding: 2px 5px; border-radius: 4px; font-size: 0.85rem; }
+
+  .btn-backup {
+    display: inline-flex; align-items: center; justify-content: center;
+    background-color: #0f172a; color: white; text-decoration: none; padding: 0.75rem 1.5rem;
+    border-radius: 8px; font-weight: 600; transition: all 0.2s; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  .btn-backup:hover { background-color: #334155; transform: translateY(-1px); box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.15); }
+
+  /* --- Utils --- */
+  .id-badge { font-family: monospace; background: #f1f5f9; padding: 4px 8px; border-radius: 6px; font-size: 0.85rem; color: #64748b; }
+  .calendar-icon { display: inline-flex; margin-right: 8px; color: #94a3b8; vertical-align: middle; }
+  .count-badge { background-color: #f1f5f9; color: #0f172a; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 8px; border: 1px solid #e2e8f0; }
+  .text-right { text-align: right; }
+  .font-medium { font-weight: 500; }
+  .text-slate-700 { color: #334155; }
+</style>
+{% endblock %}

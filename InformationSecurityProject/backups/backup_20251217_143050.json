@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin",
+      "role": "admin",
+      "full_name": "admin",
+      "email": "admin"
+    },
+    {
+      "id": 6,
+      "username": "admin1",
+      "password": "scrypt:32768:8:1$w6TBLSwMmLUesho2$668a932f5471700bad3fe47258f11671038d1218a2e5ae42e7ae90cb00d7fa831bd9745cf89bd5c4576b85284fafc654e355143ca58758555b1e2101346b5fe2",
+      "role": "admin",
+      "full_name": "gAAAAABpQrgf6Jrea4oY6k3tD28gvQ6wAQHuh0Tx3iwh43GRhcIt2oix7JN848kmmQnzpeGvbIePBAQhHC1IGQWI9Y-R-Es4pQ==",
+      "email": "gAAAAABpQrgfL270wnt0NGpZTPyjHz0nxvYV2QE0JpcVN48IAtoBRWtlvmVoQPlCKNOF0tHJuOLx0Ljb_7lKfJmgKqZPs_nMNA=="
+    },
+    {
+      "id": 7,
+      "username": "dr_bob",
+      "password": "scrypt:32768:8:1$RFbDIVjV1wIQ6ko2$440442731e4d8695dc521fe52277030b8b60ee472c7a5bad63cdf2be560bdecacdbb8ee3e37f6c3575a51ddd3bb43f3f6afe22208bd435dc44d65d78e5e8436e",
+      "role": "medic",
+      "full_name": "gAAAAABpQrukFzKDwjDFgjEc9PhNAMMmKCNs5vUVjyOV56XrdWGjfPY-hM2iH_bqsyJahA_SJWwAaVGcvFSTWfEl1YMp-S-ECA==",
+      "email": "gAAAAABpQrukg14m0-38-ydqW6-2QLI4znVTYQD63jdf2AEbQJ0yx_24cg6ZJ4_fTw7mz4KXmUH2gvdv2phik0c0W1gXifEp9w=="
+    },
+    {
+      "id": 8,
+      "username": "alice_patient",
+      "password": "scrypt:32768:8:1$j32CUv31DArnaUzN$168e355908c81020d72fd954832befc8bf015e17a30a5efbac46eba731076b09e58c4221bc8b2d47f7dfceff49632ca741c0c2379e6a52f62889359efa7e6905",
+      "role": "patient",
+      "full_name": "gAAAAABpQru1wsfwhazFsdw0_KKFSmual6KXR3iuk_gXqrSKV-SvgJqYncE2jD50hwJWtzZSPIoYuPiFf3L9VHf3HEgDLHJVyg==",
+      "email": "gAAAAABpQru1jmD-3748zFe6Qw_SQt6b7LxCUzCJ8hM7nbAJSv2uYHdc76ets1-MXG-vIUndQH0avYIO2_6TXLxxN__uZJPQHQ=="
+    }
+  ],
+  "appointments": [
+    {
+      "id": 6,
+      "patient_id": 8,
+      "medic_id": 7,
+      "date": "2025-12-18",
+      "status": "scheduled",
+      "details": "test"
+    },
+    {
+      "id": 7,
+      "patient_id": 8,
+      "medic_id": 7,
+      "date": "2025-12-26",
+      "status": "scheduled",
+      "details": "gAAAAABpQr5H6vUg79c6uBG5r2OyGWTsOFYWv8L6lBmliCfClc8K0bz3SyPsn-uZns-P6B3BEgvY5oXAvtpvy5W8DJN1CSWMqg=="
+    }
+  ]
+}

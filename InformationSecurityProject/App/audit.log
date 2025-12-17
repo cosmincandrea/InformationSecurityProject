@@ -1,0 +1,34 @@
+2025-12-04 18:57:14 UTC [INFO] Generated new ENCRYPTION_KEY
+2025-12-04 18:57:14 UTC [INFO] Encrypted personal data for alice_patient: {'full_name': 'gAAAAABpMdmKXasCXy4QVRknaUlNeXFFqajTAzuFY-UgFhQQQOk2sVvA5NJTy06wJjAqXm1aoGH2K2sXT5hakO47K2nKnfsD2w==', 'email': 'gAAAAABpMdmKm5_x7VFStLhXrWgqZGiut5VJ144ciD2LtipIFbv64QZi24HudzbN9WvFCbTDlnDvS5imPNEpk_XBBuk2miKt4NqiygksDOq7lUbZncLd9lA='}
+2025-12-04 18:57:14 UTC [INFO] Encrypted personal data for dr_bob: {'full_name': 'gAAAAABpMdmKLPHf7o8wnuZ9Yqv5QPo4L5GRmuFspw-D6mj4APLfWQR_HrSvnoq7ZgHKS5_JE8k4DSceAQDjV0UWmboflSV4iQ==', 'email': 'gAAAAABpMdmKkq2-ds2Vpk-SUzRxspli6EQ5QgOYIpICbSopCplCp599-LeYx6NOquh9ENYbQ5EZGl9R2oZhpVVvyRi9te2njLPC2l5P-xaGHLxj1Fyi39A='}
+2025-12-04 18:57:14 UTC [INFO] Encrypted personal data for carol_admin: {'full_name': 'gAAAAABpMdmKiaevzDJcmt38xzsi1GcSWatlLLcBJZWfba_q-RnjBEL8XZUyMACV6GgezFdwOPzp4ExxJdDgnfCwQmYCA4t9_w==', 'email': 'gAAAAABpMdmK-dmVSo4jLDwh5dNLXXWTc5tCJZCpCQVgN5k-7x5iOMxpu839EJZya5d9gAPpaVdc4V6OE17xuJRRHp4LrIJIBXNb0qQQcRQdImmCJBjGlMg='}
+2025-12-04 18:57:15 UTC [INFO] Generated new ENCRYPTION_KEY
+2025-12-04 18:57:15 UTC [INFO] Encrypted personal data for alice_patient: {'full_name': 'gAAAAABpMdmLjozU-kDylxFyAGfCelqlaB9qkVeGfZX7USC35V4y9JPv3RqmUqhXdt5LRMcSriFpfzwMhxoVuW2Dp9ULySin-A==', 'email': 'gAAAAABpMdmLbUnuMSHJ4UpGlcArd9isi6r4Mx1NKkHDSJtn0WZhe3j7QXCGZwX-KKFapx5tLRo53IgQ9SRYj0UsiEKkBN6H7K33OcKl_fKqzCO7X14aFFs='}
+2025-12-04 18:57:15 UTC [INFO] Encrypted personal data for dr_bob: {'full_name': 'gAAAAABpMdmLdktthXZBAyZnj0AZFE7fK0Jd6AOkoCaQRIGXVh4LWubVLSs5IVpgE_ty5ZHaBNwws5jXwvMyVv6brrzF4X459Q==', 'email': 'gAAAAABpMdmL69hbcgsTuMM89WmHMtmps87o0cmTUkB6-f-FBoA5g_2vvEjLjAAhCea9RsQSPJ0ZhRplrUUKToex8CZ-2x3wQDklh_QXc_ECa7UpPBtQCls='}
+2025-12-04 18:57:15 UTC [INFO] Encrypted personal data for carol_admin: {'full_name': 'gAAAAABpMdmLp7fQcgZz-f-15oYNAsaUDT3xAyvySuTDQZjbxEFpeZqXld1zJ1JoEQJS0lmmu5mU9FVZ-d-wM1j_VVQIV0PvRA==', 'email': 'gAAAAABpMdmLXQ4L4EZeANp3bx826ljhjUxsP2NEVAUnzrMi38ePuSrhuRoF6-PQFZMsydZ9ArRpVEQq5SRvUiBidh4b0z3OeFqHL0Nj7l3vQzo8yaN19Pw='}
+2025-12-04 18:57:46 UTC [WARNING] Invalid or expired token for alice_patient
+2025-12-04 18:58:11 UTC [INFO] User dr_bob logged with token=OpdtFhSEILYK1BBXSnv10Aq1UNneu26FglvPY19aLS4
+2025-12-04 18:58:11 UTC [INFO] Medic dr_bob accessed medic dashboard
+2025-12-04 18:58:15 UTC [INFO] User dr_bob logged out
+2025-12-04 18:58:15 UTC [INFO] Session cleared for dr_bob
+2025-12-04 18:58:25 UTC [WARNING] Failed login for username=test from ip=127.0.0.1
+2025-12-04 18:58:44 UTC [INFO] User carol_admin logged with token=yGy3-mvJ2jhEn-S7O9iAEu0zZwCNQh7BhtayAuzdHCE
+2025-12-04 18:58:44 UTC [carol_admin] Admin %s accessed admin dashboard
+2025-12-04 18:58:46 UTC [INFO] Backup created at backups\backup_20251204_185846.json
+2025-12-04 18:58:46 UTC [INFO] Backup Created
+2025-12-04 18:58:46 UTC [carol_admin] Admin %s accessed admin dashboard
+2025-12-04 18:58:53 UTC [INFO] User carol_admin logged out
+2025-12-04 18:58:53 UTC [INFO] Session cleared for carol_admin
+2025-12-04 19:00:10 UTC [INFO] Generated new ENCRYPTION_KEY
+2025-12-04 19:00:10 UTC [INFO] Encrypted personal data for alice_patient: {'full_name': 'gAAAAABpMdo6QKyPPTs9u63XtKwWCTofeLDKiQGwLeWFV1Ziv2Mz4MREcXFqnJ-7Jh1gNGnBUg6bOUYZ0LRyddBV6E7kXgQDPg==', 'email': 'gAAAAABpMdo6C4FUE4MzWkDbiUPtoVbrZPfe0tQ_hDqqI2WXMI-xS4PkRMAo9dRUcYKyQQbf5FOn0EmZU51LAwGeoRTAqLvOuBPnEKnqqo-C_nI82VT7-pQ='}
+2025-12-04 19:00:10 UTC [INFO] Encrypted personal data for dr_bob: {'full_name': 'gAAAAABpMdo6OCia319bBcbjlLuI6VHjiGAzWYxOv7F0ARY2lX8Lqc8j9WzojualfvZ1uzGQk373yFW6apMvVKgvC1CtiIbziw==', 'email': 'gAAAAABpMdo6OBvSYFZm_flH8mZBu5YxKF5nSy9fksCNNk8DdH6utPu3yZESCLTgK1OEwU8MzYtWgAHBM_isk96IyrMkTgyRsTS_PwbcgXlD4KLjnEPiWq0='}
+2025-12-04 19:00:10 UTC [INFO] Encrypted personal data for carol_admin: {'full_name': 'gAAAAABpMdo6rA5mq7w7nllGNiCC4MFoW6mYdHjTYVmZXPfK1VY6jX6doae7WE3JekN4KvWyOeo27u0l_ClBT35j5oJpL67KNg==', 'email': 'gAAAAABpMdo6DM83ibt5RN-n_cOIv4_2FDpeOIfHbfQQ7CbxyiqoqcvbJZFOmArazMUCRCds5W3j0kRCJLFSEzdZ6BGebURuAESVg5Is0BBK-nuQ6yQx_KM='}
+2025-12-04 19:00:11 UTC [INFO] Generated new ENCRYPTION_KEY
+2025-12-04 19:00:11 UTC [INFO] Encrypted personal data for alice_patient: {'full_name': 'gAAAAABpMdo7nYYBc0WzqAmXgRoKXVibLdPhiaTdqFgH9qoZSylYeqst679N8TRmehrHzniQm1H8CRUPpuTbqBk7ZN9jUQ6RrQ==', 'email': 'gAAAAABpMdo7kKaFlpzycZ05Dmi4CGY0csUYZ1HjXPS1jsD8XAyPXQJMySOEs0jVAzb08CqJaxvYDYMHoD3obQ111MBmHlfULxpVLA_nL6QMB4CK34_DM_c='}
+2025-12-04 19:00:11 UTC [INFO] Encrypted personal data for dr_bob: {'full_name': 'gAAAAABpMdo7SLZKg0y766mxA6TCmEr0M7h6u2mRgqnSVkA5bCI5EoHglqvRSwiRFBDWWv3bULT0ZZUw8LcnTUx1IUEHo7KPQg==', 'email': 'gAAAAABpMdo7FAXVQdodJLX0hD0COzYeoMU9HbJyfn8B9UBQJRId3Thc49xodQp-AScaR9FnVLVVHT6mbrB2hmDgJb82HK4DgriXZmt39ZUvC23PcVVqhQU='}
+2025-12-04 19:00:11 UTC [INFO] Encrypted personal data for carol_admin: {'full_name': 'gAAAAABpMdo7Db0r4nndscA0s4RI6Ngcn0ICwfIv2UMA_xa2BeIWs8Zf1QgQFbpFDOWZwn9UzvDRspldCcSFgs3k7fxFrcrk2g==', 'email': 'gAAAAABpMdo7UkSE1CWXowrup8MmSo3WRbwjuZntE5Zq4lsshwyM478wYVTLwBbw4MaBG0UsfPh9UzuK2lFRzeGjPYpxqSpV_hyT_8t-nmUl8J57QkqX9_0='}
+2025-12-04 19:00:41 UTC [INFO] User carol_admin logged with token=sq1slvFULINPlPcEYE9kROqSInAim2SWtf_4_ohhSu0
+2025-12-04 19:00:41 UTC [carol_admin] Admin %s accessed admin dashboard
+2025-12-04 19:00:45 UTC [INFO] Backup created at backups\backup_20251204_190045.json
+2025-12-04 19:00:45 UTC [INFO] Backup Created
+2025-12-04 19:00:45 UTC [carol_admin] Admin %s accessed admin dashboard

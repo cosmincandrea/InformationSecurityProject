@@ -1,0 +1,64 @@
+{
+  "users": {
+    "alice_patient": {
+      "id": 1,
+      "username": "alice_patient",
+      "password_hash": "scrypt:32768:8:1$59AHE6Uj1YSrnhFz$28736d925aa4e8cb10bee740cbfa60dd54b274d83858da228ab4b77452945c5bf71419c5644ec9a441f0e734a025e7a41b95cd2f06e1a7c9c23bec0fb65d0cba",
+      "role": "patient",
+      "personal": {
+        "full_name": "gAAAAABpQoH_j474m6B4iSZHonqJ_NnAPZOZmM05P_tD3byD6UqCPn_c-_MoHP2o2hAb1_J13qsqL8Iv2tWyYCfUM2LbywSekQ==",
+        "email": "gAAAAABpQoH_3HNEepJQ8APzTOenIvFmYKwe0eegY6HIi2U0v7NBnGJULjDIHroWIzc-BultqS-sWem_70uetzIeAUOT5tcoFpsTGghkyFevoP5vpVAc_78="
+      }
+    },
+    "dr_bob": {
+      "id": 2,
+      "username": "dr_bob",
+      "password_hash": "scrypt:32768:8:1$tc8IUWlTcDF7qmtX$2737536e6094c977b77c721241507ff3fc683574b4eff471bc960f248250db0a110553f2dff38b1016776203565b5ff6ca3c5b11838e7f133ba7f044907e092d",
+      "role": "medic",
+      "personal": {
+        "full_name": "gAAAAABpQoH_0gz9xXsbr1dXAILE4mUlIilnpi9oyEduJeBen-CN1RTqNVco3grA1yxuAzIE3sk0NtthciDW69IntXHggeTSEg==",
+        "email": "gAAAAABpQoH_yvDx7N37x-xhHz3Ov6a9tM2QOxoZmcRltcwCM4Fw2v8LxVTQJiS9OhcY8x2-uXY9_0UpBGOut0E3LJVis5a97viDS45zoSJTNVH_jUPCfCU="
+      }
+    },
+    "carol_admin": {
+      "id": 3,
+      "username": "carol_admin",
+      "password_hash": "scrypt:32768:8:1$diE7Y9QvSckoc8iz$68c14f09936ea190156f4079065e6213388f847f39faed61dfede57ca446df5a3a84b18026efcde06fb71b6f819231c54f552a76d5bb508c332b92f538e9a495",
+      "role": "admin",
+      "personal": {
+        "full_name": "gAAAAABpQoIAJvl5pyoTkiPX_Xg3ERXh31EUTQHW0tgs-S1332QPVC8O9aBCq-GRJ5Frx-Sh8IkGb_vZSAUqrB3EaZ8nJVNbkw==",
+        "email": "gAAAAABpQoIAKy5sBaf8MP_e4bWCdZUaWOGrKdxf_YA0xUm4WLGTbGp2hpYZZQgKRbOgkw7hY6G1BN6QdovrGHmQ3v38Df0rThLeWl6aedpUFD392BDwkqQ="
+      }
+    }
+  },
+  "appointments": [
+    {
+      "id": 1,
+      "patient_id": 1,
+      "medic_id": 2,
+      "date": "2025-01-10",
+      "status": "completed"
+    },
+    {
+      "id": 2,
+      "patient_id": 1,
+      "medic_id": 2,
+      "date": "2025-02-01",
+      "status": "completed"
+    },
+    {
+      "id": 3,
+      "patient_id": 1,
+      "medic_id": 2,
+      "date": "2025-03-15",
+      "status": "scheduled"
+    },
+    {
+      "id": 4,
+      "patient_id": 1,
+      "medic_id": 2,
+      "date": "2025-03-20",
+      "status": "scheduled"
+    }
+  ]
+}
