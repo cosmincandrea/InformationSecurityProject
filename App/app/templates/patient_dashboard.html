@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Patient Dashboard</h2>
+
+<h3>Personal data (decrypted in backend)</h3>
+<ul>
+  <li>Full name: {{ personal.full_name }}</li>
+  <li>Email: {{ personal.email }}</li>
+</ul>
+
+<h3>Past & upcoming appointments</h3>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th><th>Date</th><th>Status</th><th>Medic ID</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for a in appointments %}
+    <tr>
+      <td>{{ a.id }}</td>
+      <td>{{ a.date }}</td>
+      <td>{{ a.status }}</td>
+      <td>{{ a.medic_id }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

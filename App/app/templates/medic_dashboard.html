@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Medic Dashboard</h2>
+
+<h3>Patients assigned to you</h3>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Username</th><th>Full name</th><th>Email</th></tr>
+  </thead>
+  <tbody>
+  {% for p in patients %}
+    <tr>
+      <td>{{ p.id }}</td>
+      <td>{{ p.username }}</td>
+      <td>{{ p.full_name }}</td>
+      <td>{{ p.email }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+<h3>Next appointments</h3>
+<table>
+  <thead>
+    <tr><th>ID</th><th>Date</th><th>Status</th><th>Patient ID</th></tr>
+  </thead>
+  <tbody>
+  {% for a in appointments %}
+    <tr>
+      <td>{{ a.id }}</td>
+      <td>{{ a.date }}</td>
+      <td>{{ a.status }}</td>
+      <td>{{ a.patient_id }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
